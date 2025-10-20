@@ -64,6 +64,7 @@ FlowMind AI is an **autonomous marketing dashboard** that integrates SEO, AEO, a
 
 - **Python 3.9+**
 - **Node.js 18+**
+- **Docker** (optional but recommended)
 - **MongoDB** (local or cloud)
 - API Keys (Gemini, YouTube, Twitter, etc.)
 
@@ -74,44 +75,52 @@ git clone https://github.com/your-team/flowmind-ai.git
 cd flowmind-ai
 ```
 
-### 2️⃣ Backend Setup
+### 2️⃣ Automated Setup (Recommended)
 
+**Option A: Docker Setup (Recommended)**
 ```bash
-cd backend
+# Run the automated setup script
+# On macOS/Linux:
+./scripts/setup.sh
 
-# Create virtual environment
+# On Windows:
+scripts\setup.bat
+```
+
+**Option B: Manual Setup**
+```bash
+# Backend
+cd backend
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
 pip install -r requirements.txt
-
-# Configure environment
-cp .env.example .env
+cp env.example .env
 # Edit .env with your API keys
 
-# Run backend
-python app.py
+# Frontend
+cd frontend
+npm install
+cp env.example .env
+
+# Start services
+# Backend: python app.py
+# Frontend: npm run dev
 ```
 
-Backend will run on `http://localhost:5000`
+### 3️⃣ Docker Setup (Alternative)
 
-### 3️⃣ Frontend Setup
+If you prefer Docker:
 
 ```bash
-cd frontend
+# Start all services with Docker Compose
+docker-compose up --build -d
 
-# Install dependencies
-npm install
-
-# Configure environment
-cp .env.example .env
-
-# Run development server
-npm run dev
+# Services will be available at:
+# Backend: http://localhost:5000
+# Frontend: http://localhost:5173
+# MongoDB: localhost:27017
+# Redis: localhost:6379
 ```
-
-Frontend will run on `http://localhost:5173`
 
 ---
 
